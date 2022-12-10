@@ -47,24 +47,24 @@ namespace CampanyApp.Controllers
                         {
                             ConsoleColor.Blue.WriteConsole("Add employee name:");
 
-                            string name = Console.ReadLine();
+                            Name: string name = Console.ReadLine();
                             if (Regex.IsMatch(name, "^[A-Z]{1}[a-z]*"))
                             {
                                 ConsoleColor.Blue.WriteConsole("Add employee surname:");
 
-                            Surname: string surname = Console.ReadLine();
+                                Surname: string surname = Console.ReadLine();
 
                                 if (Regex.IsMatch(surname, "^[A-Z]{1}[a-z]*"))
                                 {
                                     ConsoleColor.Blue.WriteConsole("Add employee address:");
 
-                                    string address = Console.ReadLine();
+                                    Address: string address = Console.ReadLine();
 
                                     if (Regex.IsMatch(address, "^[A-Z]{1}[a-z]+[0-9]*"))
                                     {
                                         ConsoleColor.Blue.WriteConsole("Add employee age");
 
-                                    Age: string ageStr = Console.ReadLine();
+                                        Age: string ageStr = Console.ReadLine();
 
                                         int age;
 
@@ -124,10 +124,10 @@ namespace CampanyApp.Controllers
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                ConsoleColor.Red.WriteConsole(ex.Message);
             }
         }
         public void GetById()
@@ -203,7 +203,15 @@ namespace CampanyApp.Controllers
 
         public void Count()
         {
+            try
+            {
+                ConsoleColor.DarkGray.WriteConsole($"Employee count: {AppDbContext<Employee>.datas.Count}");
+            }
+            catch (Exception ex)
+            {
 
+                ConsoleColor.Red.WriteConsole(ex.Message);
+            }
         }
 
         public void Update()

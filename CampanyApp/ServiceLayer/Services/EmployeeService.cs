@@ -23,7 +23,7 @@ namespace ServiceLayer.Services
 
         public List<Employee> Count()
         {
-            throw new NotImplementedException();
+            return _repo.GetAll(null);
         }
 
         public Employee Create(Employee employee)
