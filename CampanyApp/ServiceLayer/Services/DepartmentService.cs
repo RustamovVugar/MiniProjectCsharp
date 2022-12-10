@@ -42,13 +42,15 @@ namespace ServiceLayer.Services
             _repo.Delete(department);
         }
 
-        public List<Department> GetAll()
+        public List<Department> GetAll(string text)
         {
-            throw new NotImplementedException();
+            if(text == null) throw new ArgumentNullException();
+            return _repo.GetAll();
         }
 
         public Department GetById(int? id)
         {
+
             if (id is null) throw new ArgumentNullException();
             return _repo.Get(m => m.Id == id);
         }

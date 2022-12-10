@@ -13,7 +13,7 @@ namespace ServiceLayer.Services.Interfaces
         Department Update(int id, Department department);
         void Delete(int? id);
         Department GetById(int? id);
-        List<Department> GetAll();
+        List<Department> GetAll(string text);
         List<Department> Search(string searchText);
     }
 }

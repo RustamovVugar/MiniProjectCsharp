@@ -135,16 +135,62 @@ namespace CampanyApp.Controllers
 
         public void Search()
         {
-            ConsoleColor.DarkMagenta.WriteConsole("Add searchText:");
-
-            string searchText = Console.ReadLine();
-
-            var result = departmentService.Search(searchText);
-
-            foreach (var item in result)
+            try
             {
-                ConsoleColor.Green.WriteConsole($"Id: {item.Id}, Name: {item.Name}, Capacity: {item.Capacity}");
+                ConsoleColor.DarkMagenta.WriteConsole("Add department search:");
+
+                string searchText = Console.ReadLine();
+
+                var result = departmentService.Search(searchText);
+
+                foreach (var item in result)
+                {
+                    ConsoleColor.Green.WriteConsole($"Id: {item.Id}, Name: {item.Name}, Capacity: {item.Capacity}");
+                }
             }
+            catch (Exception ex)
+            {
+
+                ConsoleColor.Red.WriteConsole(ex.Message);
+            }
+            
+        }
+
+        public void GetAll()
+        {
+            try
+            {
+                Text: ConsoleColor.DarkMagenta.WriteConsole("Get all departments:");
+
+                string text = Console.ReadLine();
+
+                if (text == "") 
+                {
+                    var result = departmentService.GetAll(text);
+
+                    foreach (var item in result)
+                    {
+                        ConsoleColor.Green.WriteConsole($"Id: {item.Id}, Name: {item.Name}, Capacity: {item.Capacity}");
+                    }
+
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Please add correct departments:");
+                    goto Text;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ConsoleColor.Red.WriteConsole(ex.Message);
+
+            }
+        }
+
+        public void Update()
+        {
+
         }
     }
 }
