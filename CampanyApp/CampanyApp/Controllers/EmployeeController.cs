@@ -136,9 +136,9 @@ namespace CampanyApp.Controllers
             {
                 ConsoleColor.DarkMagenta.WriteConsole("Add employee id:");
 
-            Id: string idStr = Console.ReadLine();
+                Id: string idStr = Console.ReadLine();
 
-
+                
                 int id;
 
                 bool isParseId = int.TryParse(idStr, out id);
@@ -150,7 +150,7 @@ namespace CampanyApp.Controllers
                     if (result is null)
                     {
                         ConsoleColor.Red.WriteConsole("Employee notfound, please try again:");
-                        goto Id;
+                        
                     }
 
 
@@ -221,30 +221,161 @@ namespace CampanyApp.Controllers
 
         public void GetEmployeesByDepartamentId()
         {
+            try
+            {
+              if(AppDbContext<Employee>.datas.Count == 0)
+                {
+                    ConsoleColor.Red.WriteConsole("Not found,please try again:");
+                }
+              else
+                {
+                    ConsoleColor.Blue.WriteConsole("Add department id");
 
+                    Id: string idStr = Console.ReadLine();
+
+                    int id;
+
+                    bool isParseId = int.TryParse(idStr, out id);
+
+                    if (isParseId)
+                    {
+                        List<Employee> employees = employeeService.GetEmployeesByDepartamentId(id);
+                        if(employees.Count > 0)
+                        {
+                            foreach (Employee employee in employees)
+                            {
+                                ConsoleColor.Green.WriteConsole($" Name: {employee.Name}, Surname: {employee.Surname}, Address: {employee.Address}, Age: {employee.Age}, Department Id: {employee.Department.Id}");
+
+                            }
+                        }
+                        else
+                        {
+                            ConsoleColor.Red.WriteConsole("There are not employee in this department");
+                        }
+
+                    }
+                    else
+                    {
+                        ConsoleColor.Red.WriteConsole("Please add correct id:");
+                        goto Id;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ConsoleColor.Red.WriteConsole(ex.Message);
+            }
         }
 
         public void SearchEmployeesByNameOrSurname()
         {
-            ConsoleColor.DarkMagenta.WriteConsole("Add searchText:");
-
-            string searchText = Console.ReadLine();
-
-            var result = employeeService.SearchEmployeesByNameOrSurname(searchText);
-
-            foreach (var item in result)
+            try
             {
-                ConsoleColor.Green.WriteConsole($"Id: {item.Id}, Name: {item.Name}, Surname: {item.Surname}, Age: {item.Age}, Address: {item.Address}");
+                Search: ConsoleColor.DarkMagenta.WriteConsole("Add employee name or surname:");
+
+                string searchText = Console.ReadLine();
+
+                var result = employeeService.SearchEmployeesByNameOrSurname(searchText);
+                if(searchText == "")
+                {
+                    goto Search;
+                }
+
+                foreach (var item in result)
+                {
+                    ConsoleColor.Green.WriteConsole($"Id: {item.Id}, Name: {item.Name}, Surname: {item.Surname}, Age: {item.Age}, Address: {item.Address}");
+                }
             }
+            catch (Exception ex)
+            {
+                ConsoleColor.DarkMagenta.WriteConsole(ex.Message);
+
+            }
+           
         }
         public void GetEmployeesByDepartmentAge()
         {
+            try
+            {
+                if (AppDbContext<Employee>.datas.Count == 0)
+                {
+                    ConsoleColor.Red.WriteConsole("Not found,please try again:");
+                }
+                else
+                {
+                    ConsoleColor.Blue.WriteConsole("Add department age");
 
+                Age: string idStr = Console.ReadLine();
+
+                    int age;
+
+                    bool isParseId = int.TryParse(idStr, out age);
+
+                    if (isParseId)
+                    {
+                        List<Employee> employees = employeeService.GetEmployeesByDepartmentAge(age);
+                        if (employees.Count > 0)
+                        {
+                            foreach (Employee employee in employees)
+                            {
+                                ConsoleColor.Green.WriteConsole($" Name: {employee.Name}, Surname: {employee.Surname}, Address: {employee.Address}, Age: {employee.Age}, Department Id: {employee.Department.Id}");
+
+                            }
+                        }
+                        else
+                        {
+                            ConsoleColor.Red.WriteConsole("There are not employee in this department");
+                        }
+
+                    }
+                    else
+                    {
+                        ConsoleColor.Red.WriteConsole("Please add correct id:");
+                        goto Age;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ConsoleColor.Red.WriteConsole(ex.Message);
+            }
         }
-
         public void GetAllEmployeesByDepartamentName()
         {
+            try
+            {
+                if (AppDbContext<Employee>.datas.Count == 0)
+                {
+                    ConsoleColor.Red.WriteConsole("Not found,please try again:");
+                }
+                else
+                {
+                    ConsoleColor.Blue.WriteConsole("Add department name");
 
+                         string name = Console.ReadLine();
+
+                        List<Employee> employees = employeeService.GetAllEmployeesByDepartamentName(name);
+                        if (employees.Count > 0)
+                        {
+                            foreach (Employee employee in employees)
+                            {
+                                ConsoleColor.Green.WriteConsole($" Name: {employee.Name}, Surname: {employee.Surname}, Address: {employee.Address}, Age: {employee.Age}, Department Id: {employee.Department.Id}");
+
+                            }
+                        }
+                        else
+                        {
+                            ConsoleColor.Red.WriteConsole("There are not employee in this department");
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ConsoleColor.Red.WriteConsole(ex.Message);
+            }
         }
     }
 }

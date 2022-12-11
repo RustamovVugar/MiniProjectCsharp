@@ -45,22 +45,22 @@ SelectOption: string option = Console.ReadLine();
                 Console.WriteLine("Update employee");
                 break;
             case 9:
-                Console.WriteLine("Get employee by id");
+                employeeController.GetEmployeeById();
                 break;
             case 10:
                 employeeController.DeleteEmployee();
                 break;
             case 11:
-                Console.WriteLine("Get employee by age");
+                employeeController.GetEmployeesByDepartmentAge();
                 break;
             case 12:
-                Console.WriteLine("Get employees by departmentId");
+                
                 break;
             case 13:
-                Console.WriteLine("Get all employees by departmentname");
+                employeeController.GetAllEmployeesByDepartamentName();
                 break;
             case 14:
-                
+                employeeController.SearchEmployeesByNameOrSurname();
                 break;
             case 15:
                 Console.WriteLine("Get all employees count");

@@ -38,7 +38,7 @@ namespace ServiceLayer.Services
         {
             if (id == null) throw new ArgumentNullException();
 
-            Employee employee = GetById(id);
+            Employee employee = GetEmployeeById(id);
 
             if (employee == null) throw new NotFoundException("Data not found");
 
@@ -76,7 +76,7 @@ namespace ServiceLayer.Services
 
         public List<Employee> SearchEmployeesByNameOrSurname(string searchText)
         {
-            return _repo.GetAll(m => m.Name.ToLower().Contains(searchText.ToLower()) && m.Surname.ToLower().Contains(searchText.ToLower()));
+            return _repo.GetAll(m => m.Name.ToLower().Contains(searchText.ToLower()) || m.Surname.ToLower().Contains(searchText.ToLower()));
         }
 
 
