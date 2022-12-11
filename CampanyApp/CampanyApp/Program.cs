@@ -48,7 +48,7 @@ SelectOption: string option = Console.ReadLine();
                 Console.WriteLine("Get employee by id");
                 break;
             case 10:
-                Console.WriteLine("Delete employee");
+                employeeController.DeleteEmployee();
                 break;
             case 11:
                 Console.WriteLine("Get employee by age");

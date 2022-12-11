@@ -26,7 +26,7 @@ namespace ServiceLayer.Services
             return _repo.GetAll(null);
         }
 
-        public Employee Create(Employee employee)
+        public Employee CreateEmployee(Employee employee)
         {
             employee.Id = _count;
             _repo.Add(employee);
@@ -34,7 +34,7 @@ namespace ServiceLayer.Services
             return employee;
         }
 
-        public void Delete(int? id)
+        public void DeleteEmployee(int? id)
         {
             if (id == null) throw new ArgumentNullException();
 
@@ -50,7 +50,7 @@ namespace ServiceLayer.Services
             throw new NotImplementedException();
         }
 
-        public Employee GetById(int? id)
+        public Employee GetEmployeeById(int? id)
         {
             if (id is null) throw new ArgumentNullException();
             return _repo.Get(m => m.Id == id);

@@ -9,10 +9,10 @@ namespace ServiceLayer.Services.Interfaces
 {
     public interface IEmployeeService
     {
-        Employee Create(Employee employee);
+        Employee CreateEmployee(Employee employee);
         Employee Update(int id, Employee employee);
-        void Delete(int? id);
-        Employee GetById(int? id);
+        void DeleteEmployee(int? id);
+        Employee GetEmployeeById(int? id);
         List<Employee> Count();
         List<Employee> SearchEmployeesByNameOrSurname(string searchText);
         List<Employee> GetEmployeesByDepartmentAge(int age);

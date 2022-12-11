@@ -81,7 +81,7 @@ namespace CampanyApp.Controllers
                                                 Department = department
 
                                             };
-                                            var result = employeeService.Create(employee);
+                                            var result = employeeService.CreateEmployee(employee);
                                             if (result is null) throw new NullReferenceException();
                                             ConsoleColor.Green.WriteConsole($"Id:{result.Id}, Name:{result.Name}, Surname: {result.Surname}, Age:{result.Age}, Address:{result.Address}, Department name: {result.Department.Name}");
                                         }
@@ -130,7 +130,7 @@ namespace CampanyApp.Controllers
                 ConsoleColor.Red.WriteConsole(ex.Message);
             }
         }
-        public void GetById()
+        public void GetEmployeeById()
         {
             try
             {
@@ -145,7 +145,7 @@ namespace CampanyApp.Controllers
 
                 if (isParseId)
                 {
-                    var result = employeeService.GetById(id);
+                    var result = employeeService.GetEmployeeById(id);
 
                     if (result is null)
                     {
@@ -170,7 +170,7 @@ namespace CampanyApp.Controllers
             }
         }
 
-        public void Delete()
+        public void DeleteEmployee()
         {
             try
             {
@@ -184,7 +184,7 @@ namespace CampanyApp.Controllers
 
                 if (isParseId)
                 {
-                    employeeService.Delete(id);
+                    employeeService.DeleteEmployee(id);
 
                     ConsoleColor.Green.WriteConsole($" Successfully delete ");
                 }
