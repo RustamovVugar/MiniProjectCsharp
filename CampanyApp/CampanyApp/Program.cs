@@ -10,7 +10,7 @@ while (true)
 {
     GetMenues();
 
-SelectOption: string option = Console.ReadLine();
+    SelectOption: string option = Console.ReadLine();
 
     int selectedOption;
 
@@ -67,7 +67,7 @@ SelectOption: string option = Console.ReadLine();
                 break;
 
             default:
-                Console.WriteLine("Select again true option:");
+                ConsoleColor.Red.WriteConsole("Select again true option:");
                 goto SelectOption;
         }
     }

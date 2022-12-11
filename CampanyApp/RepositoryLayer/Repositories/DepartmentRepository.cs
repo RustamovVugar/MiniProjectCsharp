@@ -35,7 +35,10 @@ namespace RepositoryLayer.Repositories
 
         public void Update(Department entity)
         {
-            throw new NotImplementedException();
+           Department department=Get(m=>m.Id==entity.Id);   
+            if (department is null) throw new ArgumentNullException();
+            department.Name = entity.Name;
+            department.Capacity = entity.Capacity;
         }
     }
 }

@@ -20,34 +20,42 @@ namespace CampanyApp.Controllers
         {
             try
             {
-                ConsoleColor.DarkMagenta.WriteConsole("Add department name:");
+                Console: ConsoleColor.DarkMagenta.WriteConsole("Add department name:");
 
                 string name = Console.ReadLine();
-
-                ConsoleColor.DarkMagenta.WriteConsole("Add department capacity count:");
-
-
-            Capacity: string capacityStr = Console.ReadLine();
-
-                int capacity;
-
-                bool isParseCapacity = int.TryParse(capacityStr, out capacity);
-                if (isParseCapacity)
+                if(name == null || name =="")
                 {
-                    Department department = new()
-                    {
-                        Name = name,
-                        Capacity = capacity,
-                    };
-
-                    var result = departmentService.Create(department);
-
-                    ConsoleColor.Green.WriteConsole($"Id {result.Id}, Name {result.Name}, Capacity {result.Capacity}");
+                    ConsoleColor.Red.WriteConsole("Not found, please try again:");
+                    goto Console;
                 }
                 else
                 {
-                    ConsoleColor.Red.WriteConsole("Please add correct capacity:");
-                    goto Capacity;
+                    ConsoleColor.DarkMagenta.WriteConsole("Add department capacity:");
+
+                    Capacity: string capacityStr = Console.ReadLine();
+
+                    int capacity;
+
+                    bool isParseCapacity = int.TryParse(capacityStr, out capacity);
+                    if (isParseCapacity)
+                    {
+                        Department department = new()
+                        {
+                            Name = name,
+                            Capacity = capacity,
+                        };
+
+                        var result = departmentService.Create(department);
+
+                        ConsoleColor.Green.WriteConsole("Department create successfly");
+
+                        ConsoleColor.Green.WriteConsole($"Id {result.Id}, Name {result.Name}, Capacity {result.Capacity}");
+                    }
+                    else
+                    {
+                        ConsoleColor.Red.WriteConsole("Please add correct capacity:");
+                        goto Capacity;
+                    }
                 }
             }
             catch (Exception ex)
@@ -195,7 +203,58 @@ namespace CampanyApp.Controllers
 
         public void Update()
         {
+            try
+            {
+                ConsoleColor.Blue.WriteConsole("Add department id:");
 
+                 Id: string idStr = Console.ReadLine();
+                
+                int id;
+
+                bool isParseId = int.TryParse(idStr, out id);
+
+                if (isParseId)
+                {
+                    var result = departmentService.GetById(id);
+                    if(result is null)
+                    {
+                        ConsoleColor.Red.WriteConsole("Not found");
+                    }
+                    else
+                    {
+                        ConsoleColor.Blue.WriteConsole("Add department name:");
+
+                        string newName = Console.ReadLine();
+
+                        ConsoleColor.Blue.WriteConsole("Add department capacity:");
+
+                    Capacity: string capacitystr = Console.ReadLine();
+
+                        int capacity;
+
+                        bool isParseCapacity=int.TryParse(capacitystr, out capacity);
+
+                        if(isParseCapacity)
+                        {
+                            result.Name = newName;
+                            result.Capacity = capacity;
+
+                            ConsoleColor.Green.WriteConsole($"Id: {result.Id}, Name: {result.Name}, Capacity: {result.Capacity}");
+                        }
+                        else
+                        {
+                            ConsoleColor.Red.WriteConsole("Please try again capacity:");
+                            goto Capacity;
+                        }
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
