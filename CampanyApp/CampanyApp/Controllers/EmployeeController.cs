@@ -145,16 +145,13 @@ namespace CampanyApp.Controllers
 
                 if (isParseId)
                 {
+                    Department department = departmentService.GetById(id);
                     var result = employeeService.GetEmployeeById(id);
 
-                    if (result is null)
-                    {
-                        ConsoleColor.Red.WriteConsole("Employee notfound, please try again:");
-                        
-                    }
-
-
-                    ConsoleColor.Green.WriteConsole($"Id: {result.Id}, Name: {result.Name}, Surname: {result.Surname}, Age: {result.Age}, Address: {result.Address}");
+                    if (result is null) throw new DirectoryNotFoundException("No found");
+                    
+                        ConsoleColor.Green.WriteConsole($"Id: {result.Id}, Name: {result.Name}, Surname: {result.Surname}, Age: {result.Age}, Address: {result.Address}");
+                   
                 }
                 else
                 {

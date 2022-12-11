@@ -54,7 +54,7 @@ SelectOption: string option = Console.ReadLine();
                 employeeController.GetEmployeesByDepartmentAge();
                 break;
             case 12:
-                
+                employeeController.GetEmployeesByDepartamentId();
                 break;
             case 13:
                 employeeController.GetAllEmployeesByDepartamentName();
@@ -63,7 +63,7 @@ SelectOption: string option = Console.ReadLine();
                 employeeController.SearchEmployeesByNameOrSurname();
                 break;
             case 15:
-                Console.WriteLine("Get all employees count");
+                employeeController.Count();
                 break;
 
             default:
