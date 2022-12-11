@@ -248,12 +248,18 @@ namespace CampanyApp.Controllers
                         }
                     }
                 }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Please try again correct id:");
+                    goto Id;
+                }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                ConsoleColor.Red.WriteConsole(ex.Message);
+                
             }
         }
     }

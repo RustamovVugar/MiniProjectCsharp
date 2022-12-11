@@ -24,7 +24,7 @@ while (true)
                 departmentController.Create();
                 break;
             case 2:
-                Console.WriteLine("Update Department");
+                departmentController.Update();
                 break;
             case 3:
                 departmentController.Delete();
