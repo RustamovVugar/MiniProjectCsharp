@@ -42,9 +42,8 @@ namespace ServiceLayer.Services
             _repo.Delete(department);
         }
 
-        public List<Department> GetAll(string text)
+        public List<Department> GetAllDepartments()
         {
-            if(text == null) throw new ArgumentNullException();
             return _repo.GetAll();
         }
 

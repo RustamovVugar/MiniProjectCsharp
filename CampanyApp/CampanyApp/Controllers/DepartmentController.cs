@@ -146,7 +146,7 @@ namespace CampanyApp.Controllers
         {
             try
             {
-                Search: ConsoleColor.DarkMagenta.WriteConsole("Add department name:");
+                Search: ConsoleColor.Blue.WriteConsole("Add department name:");
 
                 string searchText = Console.ReadLine();
 
@@ -172,34 +172,12 @@ namespace CampanyApp.Controllers
 
         public void GetAll()
         {
-            try
-            {
-                Text: ConsoleColor.DarkMagenta.WriteConsole("Get all departments:");
+          var result = departmentService.GetAllDepartments();
 
-                string text = Console.ReadLine();
-
-                if (text == "") 
-                {
-                    var result = departmentService.GetAll(text);
-
-                    foreach (var item in result)
-                    {
-                        ConsoleColor.Green.WriteConsole($"Id: {item.Id}, Name: {item.Name}, Capacity: {item.Capacity}");
-                    }
-
-                }
-                else
-                {
-                    ConsoleColor.Red.WriteConsole("Please add correct departments:");
-                    goto Text;
-                }
-            }
-            catch (Exception ex)
-            {
-
-                ConsoleColor.Red.WriteConsole(ex.Message);
-
-            }
+          foreach (var item in result)
+          {
+            ConsoleColor.Green.WriteConsole($"Id: {item.Id}, Name: {item.Name}, Capacity: {item.Capacity}");
+          }
         }
 
         public void Update()
