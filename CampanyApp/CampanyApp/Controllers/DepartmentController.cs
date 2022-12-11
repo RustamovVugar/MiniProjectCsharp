@@ -83,12 +83,13 @@ namespace CampanyApp.Controllers
 
                     if (result is null)
                     {
-                        ConsoleColor.Red.WriteConsole("Department notfound, please try again:");
-                        goto Id;
+                        ConsoleColor.Red.WriteConsole("Department notfound:");
+                        
                     }
-
-
-                    ConsoleColor.Green.WriteConsole($"Id: {result.Id}, Name: {result.Name}, Capacity: {result.Capacity}");
+                    else
+                    {
+                        ConsoleColor.Green.WriteConsole($"Id: {result.Id}, Name: {result.Name}, Capacity: {result.Capacity}");
+                    }
                 }
                 else
                 {
