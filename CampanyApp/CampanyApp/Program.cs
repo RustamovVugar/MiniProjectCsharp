@@ -39,7 +39,7 @@ SelectOption: string option = Console.ReadLine();
                 departmentController.Search();
                 break;
             case 7:
-                Console.WriteLine("Create employee");
+                employeeController.Create();
                 break;
             case 8:
                 Console.WriteLine("Update employee");

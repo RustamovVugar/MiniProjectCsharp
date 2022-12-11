@@ -137,11 +137,16 @@ namespace CampanyApp.Controllers
         {
             try
             {
-                ConsoleColor.DarkMagenta.WriteConsole("Add department search:");
+                Search: ConsoleColor.DarkMagenta.WriteConsole("Add department name:");
 
                 string searchText = Console.ReadLine();
 
                 var result = departmentService.Search(searchText);
+
+                if (searchText == "")
+                {
+                    goto Search;
+                }
 
                 foreach (var item in result)
                 {

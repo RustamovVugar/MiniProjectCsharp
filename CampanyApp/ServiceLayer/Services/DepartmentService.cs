@@ -57,6 +57,7 @@ namespace ServiceLayer.Services
 
         public List<Department> Search(string searchText)
         {
+            if(searchText is null) throw new ArgumentNullException();
             return _repo.GetAll(m => m.Name.ToLower().Contains(searchText.ToLower()));
         }
 
